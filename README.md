@@ -18,7 +18,7 @@ Go to the file explorer and find the chrome.exe file, drag it into the cmd propm
 Download all the musics/songs you want as a mp3, and put them in the albun_1 folder.
 
 Open the notepad and write the name of all the songs, followed by: question mark, author, question mark, album, it should look something like this:
-(file name)?(song name)?(author)?(album)
+(file name)?(song name)?(author)?(album) - 
 dontstopmenow.mp3?Don't Stop Me Now?Queen?Jazz
 
 Save it as info.csv in the files folder (make sure that its info.csv not info.csv.txt or anything other than info.csv).
@@ -36,20 +36,4 @@ If you have any problem with the libraries, just go to the terminal (cmd for win
 
 It should be up and running now!
 
-Note: this project was made in portuguese, so here is the abreviations used, full words and translation to english (part of the code is also in portuguse, put the words in google translator and it will tell you their meaning, or just figure it out yourself :) ):
-
-(abreviation) - (full word) = (translation)/(other info)
-Desliga - Desliga = turn off/turn off the pi
-Energia - Energia = Power/menu to calculate watts, amps or volts
-Calcula - Calculadora = Calculator
-Resiste - Resistencia = Resistor/menu to calculate the ohms for a resistor
-Conve - Converter = Convert/convert various units
-Musica - Musica = Music/play songs
-Fechar - Fechar = Close
-Sair - Sair = Close/close the menus
-Calcular - Calcular = Calculate/efectuates the calculations
-Nome - Nome = Name/name of the song
-Autor - Autor = author of the song
-Album - Album = song's album
-V Inicio = starting volts
-V Fim = ending volts
+Note: this project was made in portuguese, so if there's any word you don't understand, just put it on google translator.

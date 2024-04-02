@@ -32,8 +32,10 @@ On the "comand line to execute" box, write: "sudo /usr/bin/python %f", write "Su
 
 Click on the Raspberry pi icon, select "preferences", then "Screen Configuration", right click, select "resolution", set it to 1024x600 (or the closest option) (if you want to use a different resolution, you'll have to modify the code)
 
+Open the notepad and write "python " then open file explorer and drag your "pc_receive" file onto cmd, paste the path to notepad and save as "connect.bat" (you can choose any name as long as it is a .bat file, so "code.bat" would work, but "code.bat.txt" wouldnt, since its a txt(text) file, not a .bat file)
+
 If you have any problem with the libraries, just go to the terminal (cmd for windows) and write "pip install" followed by the library name (pip3 for python3)
 
-It should be up and running now!
+It should be up and running now! Execute the "screen.py" file/code on the pi, by clicking on it or on the terminal. To connect to the pc, just click on "conect" and execute the .bat file on your pc.
 
 Note: this project was made in portuguese, so if there's any word you don't understand, just put it on google translator.

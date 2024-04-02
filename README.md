@@ -20,8 +20,6 @@ Download all the musics/songs you want as a mp3, and put them in the albun_1 fol
 Open the notepad and write the name of all the songs, followed by: question mark, author, question mark, album, it should look something like this:
 (file name)?(song name)?(author)?(album)
 dontstopmenow.mp3?Don't Stop Me Now?Queen?Jazz
-everybodywantstoruletheworld.mp3?Everybody Wants To Rule The World?Tears For Fears?Songs From The Big Chair
-anotheronebitesthedust.mp3?Another one bites the dust?Queen?The Game
 
 Save it as info.csv in the files folder (make sure that its info.csv not info.csv.txt or anything other than info.csv).
 

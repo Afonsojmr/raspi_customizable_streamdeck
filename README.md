@@ -3,11 +3,11 @@ A Raspberry pi project that allows you to make a custom UI in the Raspberry pi p
 
 Requirements:
 
-A Raspberry Pi (i used a Raspi 4, but most version should work)
-A 1024x600p screen (not necessary)
-Pi Os Full
-basic Raspi things, like a power supply and micro sd card
-python installed (preferably python3, use "sudo apt-get install python3" to get python3 on the pi, and follow microsoft's instructions to install it on windows)
+A Raspberry Pi (i used a Raspi 4, but most version should work);
+ A 1024x600p screen (not necessary);
+ Pi Os Full;
+ basic Raspi things, like a power supply and micro sd card;
+ Python installed (preferably python3, use "sudo apt-get install python3" to get python3 on the pi, and follow microsoft's instructions to install it on windows);
 
 How to setup:
 

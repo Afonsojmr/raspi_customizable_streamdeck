@@ -7,7 +7,7 @@ import webbrowser
 key = ''
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("192.168.1.188", 5000))
+s.connect(("add your pi's ip here", 5000))
 print("connected")
 
 while True:

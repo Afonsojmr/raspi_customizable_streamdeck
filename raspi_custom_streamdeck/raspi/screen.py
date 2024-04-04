@@ -10,8 +10,13 @@ from time import strftime
 last_time = timer()
 
 username = 'add your pi's username here'
-shelly_on = True
 shelly_ip = 'add your shelly ip here'
+shelly_on = 0
+    
+with open("/home/" + username + "/Desktop/files/shelly.csv") as log:
+    data = log.readlines()
+    info = data[-1]
+    shelly_on = int(info)
 
 luz = 2
 
@@ -237,9 +242,9 @@ while True:
     img = font_2.render('Fechar', True, (255,255,255))
     Fechar = screen.blit(img,(0, 530))
 
-    if shelly_on:
+    if shelly_on == 1:
         img = font_2.render('Shelly', True, (0,200,0))
-    else:
+    elif shelly_on == 0:
         img = font_2.render('Shelly', True, (200,0,0))
     
     Shelly_on_off = screen.blit(img,(200, 530))
@@ -278,10 +283,14 @@ while True:
             elif Lights.collidepoint(event.pos):
                 Actions(19)
             elif Shelly_on_off.collidepoint(event.pos):
-                if shelly_on:
-                    shelly_on = False
-                else: 
-                    shelly_on = True
+                if shelly_on == 1:
+                    shelly_on = 0
+                    with open("/home/" + username + "/Desktop/files/shelly.csv", "a") as log:
+                        log.write("0" + "\n")
+                elif shelly_on == 0:
+                    shelly_on = 1
+                    with open("/home/" + username + "/Desktop/files/shelly.csv", "a") as log:
+                        log.write("1" + "\n")
 
             if Converter.collidepoint(event.pos):
                 converter = True

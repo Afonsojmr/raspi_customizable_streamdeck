@@ -29,9 +29,5 @@ while True:
         webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open("https://youtube.com")
     elif key == '0':
         webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open("https://web.whatsapp.com")
-    elif key == '-':
-        keyboard.send("alt+f4")
-    elif key == '+':
-        keyboard.send("ctrl+w")
     elif key == '1':
         os.system(r'rundll32.exe powrprof.dll,SetSuspendState Hibernate')

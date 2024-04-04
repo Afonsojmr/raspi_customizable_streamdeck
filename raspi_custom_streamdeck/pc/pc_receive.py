@@ -24,10 +24,10 @@ while True:
         sleep(0.5)
         keyboard.send("enter")
     elif key == '2':
-        webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open("https://twitch.tv")
+        webbrowser.get(put your chrome.exe path here).open("https://twitch.tv")
     elif key == '.':
-        webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open("https://youtube.com")
+        webbrowser.get(put your chrome.exe path here).open("https://youtube.com")
     elif key == '0':
-        webbrowser.get("C:/Program Files/Google/Chrome/Application/chrome.exe %s").open("https://web.whatsapp.com")
+        webbrowser.get(put your chrome.exe path here).open("https://web.whatsapp.com")
     elif key == '1':
         os.system(r'rundll32.exe powrprof.dll,SetSuspendState Hibernate')

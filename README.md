@@ -34,7 +34,7 @@ Click on the Raspberry pi icon, select "preferences", then "Screen Configuration
 
 Open the notepad and write "python " then open file explorer and drag your "pc_receive" file onto cmd, paste the path to notepad and save as "connect.bat" (you can choose any name as long as it is a .bat file, so "code.bat" would work, but "code.bat.txt" wouldnt, since its a txt(text) file, not a .bat file).
 
-To control your shelly module just open the "screen.py" file and put your shelly's ip on the variable "shelly_ip. To turn the shelly on, you need to click on "shelly" until it turns gree, then click on "luz" to turn it on and off. (Note: i used a shelly plug s, compatibility with other shelly modules is not verified).
+To control your shelly module just open the "screen.py" file and put your shelly's ip on the variable "shelly_ip. To turn the shelly on, you need to click on "shelly" until it turns green, then click on "luz" to turn it on and off. (Note: i used a shelly plug s, compatibility with other shelly modules is not verified).
 
 If you have any problem with the libraries, just go to the terminal (cmd for windows) and write "pip install" followed by the library name (pip3 for python3)
 

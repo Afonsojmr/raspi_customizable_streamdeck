@@ -9,7 +9,7 @@ from time import strftime
 
 last_time = timer()
 
-username = 'Jarvis'
+username = 'add your pi's username here'
 shelly_on = False #set this to True to be able of controlling the shelly module
 shelly_ip = 'add you shelly ip here'
 

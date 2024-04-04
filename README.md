@@ -15,7 +15,7 @@ Dowload the folder "raspi_custom_streamdeck". Open the file called "screen.py".
 Change the usernam to your pi's username, save the file and close.
 Go to the folder "pc" and open the file "pc_receive", change the ip to your pi's ip. 
 Go to the file explorer and find the chrome.exe file, drag it into the cmd propmt and copy the path. Paste the path onto the "pc_recive" file.
-Download all the musics/songs you want as a mp3, and put them in the albun_1 folder.
+Download all the musics/songs you want as a mp3, and put them in the album_1 folder.
 
 Open the notepad and write the name of all the songs, followed by: question mark, author, question mark, album, it should look something like this:
 (file name)?(song name)?(author)?(album) - 

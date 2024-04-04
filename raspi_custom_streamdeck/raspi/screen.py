@@ -4,10 +4,14 @@ import socket
 from subprocess import call
 import os
 from timeit import default_timer as timer
+import urllib.request
+from time import strftime
 
 last_time = timer()
 
 username = 'Jarvis'
+shelly_on = False
+shelly_ip = '192.168.1.65'
 
 luz = 2
 
@@ -33,6 +37,7 @@ resistor = False
 energy = False
 calculator = False
 music_ = False
+shelly_state = 0
 
 pos_x = [30, 30, 30, 30, 30, 30, 30, 150, 150, 150, 150, 150, 150, 150]
 pos_y = [40, 90, 140, 190, 240, 290, 340, 40, 90, 140, 190, 240, 290,340]
@@ -55,6 +60,7 @@ def Actions(input):
     global album_1
     global connected
     global clientsocket
+    global shelly_state
 
     if input == 1 and connected == False:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -75,24 +81,23 @@ def Actions(input):
             print('desligou 3')
     
     if connected == True:
-        if input == 5:
-            clientsocket.send(bytes('/', "utf-8"))
-        elif input == 6:
-            clientsocket.send(bytes('8', "utf-8"))
-        elif input == 7:
-            clientsocket.send(bytes('5', "utf-8"))
-        elif input == 8:
-            clientsocket.send(bytes('2', "utf-8"))
-        elif input == 9:
-            clientsocket.send(bytes('.', "utf-8"))
-        elif input == 10:
-            clientsocket.send(bytes('0', "utf-8"))
-        elif input == 11:
-            clientsocket.send(bytes('-', "utf-8"))
-        elif input == 12:
-            clientsocket.send(bytes('+', "utf-8"))
-        elif input == 13:
-            clientsocket.send(bytes('1', "utf-8"))
+        try: 
+            if input == 5:
+                clientsocket.send(bytes('/', "utf-8"))
+            elif input == 6:
+                clientsocket.send(bytes('8', "utf-8"))
+            elif input == 7:
+                clientsocket.send(bytes('5', "utf-8"))
+            elif input == 8:
+                clientsocket.send(bytes('2', "utf-8"))
+            elif input == 9:
+                clientsocket.send(bytes('.', "utf-8"))
+            elif input == 10:
+                clientsocket.send(bytes('0', "utf-8"))
+            elif input == 13:
+                clientsocket.send(bytes('1', "utf-8"))
+        except ValueError:
+            print('erro')
     
     elif input == 15:
         call("sudo shutdown -h now", shell=True)
@@ -127,6 +132,14 @@ def Actions(input):
         if paused == False:
             pygame.mixer.music.load('/home/' + username + '/Desktop/files/album_1/' + album_1[music])
             pygame.mixer.music.play()
+
+    elif input == 19:
+        if shelly_state == 0 and shelly_on:
+            urllib.request.urlopen('http://' + shelly_ip + '/relay/0?turn=on')
+            shelly_state = 1
+        elif shelly_state == 1 and shelly_on:
+            urllib.request.urlopen('http://' + shelly_ip + '/relay/0?turn=off')
+            shelly_state = 0
 
 raw = pygame.image.load('/home/' + username + '/Desktop/files/bg_buttons.png').convert()
 image = pygame.transform.scale(raw, (180,100))
@@ -184,29 +197,26 @@ while True:
     Youtube = screen.blit(image, (630,0))
     Draw('Yout', 665,30)
 
-    Close_tab = screen.blit(image, (840,0))
-    Draw('Alt F4', 865,30)
-    
-    Close_app = screen.blit(image, (0,120))
-    Draw('Fechar', 5,150)
+    Chrome = screen.blit(image, (840,0))
+    Draw('Chrome', 838,30)
+
+    Warthunder = screen.blit(image, (0,120))
+    Draw('WT', 50,150)
     
     Task_manager = screen.blit(image, (210,120))
     Draw('TaskM', 225,150)
-    
-    Warthunder = screen.blit(image, (420,120))
-    Draw('WT', 470,150)
 
-    Chrome = screen.blit(image, (630,120))
-    Draw('Chrome', 628,150)
+    Shutdown = screen.blit(image, (420, 120))
+    Draw('Desliga', 425,150)
 
-    Shutdown_full = screen.blit(image, (840,120))
-    Draw('Desl Pc ', 840,150)
-    
-    Shutdown = screen.blit(image, (0, 240))
-    Draw('Desliga', 5,270)
+    Shutdown_full = screen.blit(image, (630,120))
+    Draw('Desl Pc ', 630,150)
 
-    Resistance = screen.blit(image, (630,240))
-    Draw('Resiste', 635,270)
+    Lights = screen.blit(image, (840,120))
+    Draw('Luz', 880,150)
+
+    Music = screen.blit(image, (0, 240))
+    Draw('Musica', 5,270)
 
     Energy = screen.blit(image, (210,240))
     Draw('Energia', 210,270)
@@ -214,11 +224,15 @@ while True:
     Calculator = screen.blit(image, (420,240))
     Draw('Calcula', 420,270)
 
+    Resistance = screen.blit(image, (630,240))
+    Draw('Resiste', 635,270)
+
     Converter = screen.blit(image, (840,240))
     Draw('Conve', 855,270)
 
-    Music = screen.blit(image, (0, 360))
-    Draw('Musica', 5,390)
+    font_2 = pygame.font.SysFont(None, 60)
+    img = font_2.render(strftime("%d-%m-%y %I:%M%p"), True, (255,255,255))
+    Fechar = screen.blit(img,(670, 530))
 
     font_2 = pygame.font.SysFont(None, 60)
     img = font_2.render('Fechar', True, (255,255,255))
@@ -228,7 +242,10 @@ while True:
     if time_elapsed > 60:
         last_time = time_now
         if connected:
-            clientsocket.send(bytes('123', "utf-8"))
+            try:
+                clientsocket.send(bytes('123', "utf-8"))
+            except ValueError:
+                print('erro')
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -248,14 +265,12 @@ while True:
                 Actions(9)
             elif Whatsapp.collidepoint(event.pos):
                 Actions(10)
-            elif Close_tab.collidepoint(event.pos):
-                Actions(11)
-            elif Close_app.collidepoint(event.pos):
-                Actions(12)
             elif Shutdown_full.collidepoint(event.pos):
                 Actions(13)
             elif Shutdown.collidepoint(event.pos):
                 Actions(15)
+            elif Lights.collidepoint(event.pos):
+                Actions(19)
 
             if Converter.collidepoint(event.pos):
                 converter = True
@@ -304,7 +319,10 @@ while True:
         if time_elapsed > 60:
             last_time = time_now
             if connected:
-                clientsocket.send(bytes('123', "utf-8"))
+                try:
+                    clientsocket.send(bytes('123', "utf-8"))
+                except ValueError:
+                    print('erro')
 
         with open("/home/" + username + "/Desktop/files/info.csv") as log:
             data = log.readlines()

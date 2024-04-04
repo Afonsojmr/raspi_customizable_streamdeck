@@ -6,11 +6,13 @@ import os
 from timeit import default_timer as timer
 import urllib.request
 from time import strftime
+import json
+import requests
 
 last_time = timer()
 
-username = 'add your pi's username here'
-shelly_ip = 'add your shelly ip here'
+username = 'add your pi username here'
+shelly_ip = 'add your shelly's ip here'
 shelly_on = 0
 shelly_state = 0
     
@@ -19,10 +21,20 @@ with open("/home/" + username + "/Desktop/files/shelly.csv") as log:
     info = data[-1]
     shelly_on = int(info)
 
-with open("/home/" + username + "/Desktop/files/shelly_state.csv") as log:
-    data = log.readlines()
-    info = data[-1]
-    shelly_state = int(info)
+def get_shelly_status():
+    try:
+        response = requests.get('http://' + shelly_ip + '/status')
+        if response.status_code == 200:
+            return json.loads(response.text)
+        else:
+            return None
+    except Exception:
+        return None
+
+if float(str(str(get_shelly_status()).split("[{'power': ")[1]).split(',')[0]) > 0:
+    shelly_state = 1
+else:
+    shelly_state = 0
 
 luz = 2
 

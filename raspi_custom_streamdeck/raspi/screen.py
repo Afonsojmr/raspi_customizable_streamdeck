@@ -10,7 +10,7 @@ from time import strftime
 last_time = timer()
 
 username = 'add your pi's username here'
-shelly_on = False
+shelly_on = True
 shelly_ip = 'add your shelly ip here'
 
 luz = 2

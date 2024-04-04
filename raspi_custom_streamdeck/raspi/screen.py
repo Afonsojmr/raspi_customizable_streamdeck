@@ -12,11 +12,17 @@ last_time = timer()
 username = 'add your pi's username here'
 shelly_ip = 'add your shelly ip here'
 shelly_on = 0
+shelly_state = 0
     
 with open("/home/" + username + "/Desktop/files/shelly.csv") as log:
     data = log.readlines()
     info = data[-1]
     shelly_on = int(info)
+
+with open("/home/" + username + "/Desktop/files/shelly_state.csv") as log:
+    data = log.readlines()
+    info = data[-1]
+    shelly_state = int(info)
 
 luz = 2
 
@@ -42,7 +48,6 @@ resistor = False
 energy = False
 calculator = False
 music_ = False
-shelly_state = 0
 
 pos_x = [30, 30, 30, 30, 30, 30, 30, 150, 150, 150, 150, 150, 150, 150]
 pos_y = [40, 90, 140, 190, 240, 290, 340, 40, 90, 140, 190, 240, 290,340]
@@ -143,9 +148,13 @@ def Actions(input):
         if shelly_state == 0 and shelly_on:
             urllib.request.urlopen('http://' + shelly_ip + '/relay/0?turn=on')
             shelly_state = 1
+            with open("/home/" + username + "/Desktop/files/shelly_state.csv", "a") as log:
+                log.write("1" + "\n")
         elif shelly_state == 1 and shelly_on:
             urllib.request.urlopen('http://' + shelly_ip + '/relay/0?turn=off')
             shelly_state = 0
+            with open("/home/" + username + "/Desktop/files/shelly_state.csv", "a") as log:
+                log.write("0" + "\n")
 
 raw = pygame.image.load('/home/' + username + '/Desktop/files/bg_buttons.png').convert()
 image = pygame.transform.scale(raw, (180,100))

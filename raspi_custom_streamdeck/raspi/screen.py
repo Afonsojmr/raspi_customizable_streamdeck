@@ -10,8 +10,8 @@ from time import strftime
 last_time = timer()
 
 username = 'add your pi's username here'
-shelly_on = False #set this to True to be able of controlling the shelly module
-shelly_ip = 'add you shelly ip here'
+shelly_on = False
+shelly_ip = 'add your shelly ip here'
 
 luz = 2
 
@@ -48,6 +48,7 @@ pos_y_out = [40, 90, 140, 190, 240, 290, 340, 40, 90, 140, 190, 240, 290, 340]
 SI = {'mm': 0.001,'cm': 0.01,'dm': 0.1, 'm': 1.0,'hm': 100.0,'dam': 10.0, 'km': 1000.0, 'mi': 1600, 'y': 0.914, 'ft': 0.3, 'in': 0.025, 'kg': 1000,'g': 1, 'lb': 450}
 
 font = pygame.font.SysFont(None, 70)
+font_2 = pygame.font.SysFont(None, 60)
 
 def Draw(text, x, y):
     img = font.render(text, True, (255,255,255))
@@ -230,13 +231,18 @@ while True:
     Converter = screen.blit(image, (840,240))
     Draw('Conve', 855,270)
 
-    font_2 = pygame.font.SysFont(None, 60)
     img = font_2.render(strftime("%d-%m-%y %I:%M%p"), True, (255,255,255))
     Fechar = screen.blit(img,(670, 530))
 
-    font_2 = pygame.font.SysFont(None, 60)
     img = font_2.render('Fechar', True, (255,255,255))
     Fechar = screen.blit(img,(0, 530))
+
+    if shelly_on:
+        img = font_2.render('Shelly', True, (0,200,0))
+    else:
+        img = font_2.render('Shelly', True, (200,0,0))
+    
+    Shelly_on_off = screen.blit(img,(200, 530))
 
     time_elapsed = time_now - last_time
     if time_elapsed > 60:
@@ -271,6 +277,11 @@ while True:
                 Actions(15)
             elif Lights.collidepoint(event.pos):
                 Actions(19)
+            elif Shelly_on_off.collidepoint(event.pos):
+                if shelly_on:
+                    shelly_on = False
+                else: 
+                    shelly_on = True
 
             if Converter.collidepoint(event.pos):
                 converter = True
@@ -290,8 +301,6 @@ while True:
         screen.fill((0,0,0))
 
         raw_2 = pygame.image.load('/home/' + username + '/Desktop/files/bg_buttons.png').convert()
-
-        font_2 = pygame.font.SysFont(None, 60)
 
         img = font_2.render('Fechar', True, (255,255,255))
         Fechar = screen.blit(img,(870, 530))
@@ -369,8 +378,6 @@ while True:
         screen.fill((0,0,0))
 
         raw_2 = pygame.image.load('/home/' + username + '/Desktop/files/bg_buttons.png').convert()
-
-        font_2 = pygame.font.SysFont(None, 60)
 
         img = font_2.render('Fechar', True, (255,255,255))
         Fechar = screen.blit(img,(870, 530))
@@ -502,8 +509,6 @@ while True:
         screen.fill((0,0,0))
 
         raw_2 = pygame.image.load('/home/' + username + '/Desktop/files/bg_buttons.png').convert()
-
-        font_2 = pygame.font.SysFont(None, 60)
 
         img = font_2.render('Fechar', True, (255,255,255))
         Fechar = screen.blit(img,(870, 530))
@@ -662,8 +667,6 @@ while True:
         screen.fill((0,0,0))
 
         raw_2 = pygame.image.load('/home/' + username + '/Desktop/files/bg_buttons.png').convert()
-
-        font_2 = pygame.font.SysFont(None, 60)
 
         img = font_2.render('Fechar', True, (255,255,255))
         Fechar = screen.blit(img,(870, 530))
@@ -910,7 +913,6 @@ while True:
     while converter:
         screen.fill((0,0,0))
 
-        font_2 = pygame.font.SysFont(None, 60)
         img = font_2.render('Sair', True, (255,255,255))
         Close = screen.blit(img,(0, 530))
 
@@ -1067,7 +1069,6 @@ while True:
         key_12 = pygame.draw.rect(screen,(0,0,0),pygame.Rect(760,330,70,80))
         screen.blit(img,(760, 330))
 
-        font_2 = pygame.font.SysFont(None, 60)
         img = font_2.render('Fechar', True, (255,255,255))
         Fechar = screen.blit(img,(870, 530))
 

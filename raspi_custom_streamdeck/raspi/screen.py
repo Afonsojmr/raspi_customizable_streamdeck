@@ -12,23 +12,20 @@ import requests
 last_time = timer()
 
 username = 'add your pi's username here'
-shelly_ip = 'put your shelly's ip here'
+shelly_ip = 'add your shelly ip here'
 shelly_on = 0
 shelly_state = 0
 
-def get_shelly_status():
-    try:
-        response = requests.get('http://' + shelly_ip + '/status')
-        if response.status_code == 200:
-            x = json.loads(response.text)
-            if float(str(str(x).split("[{'power': ")[1]).split(',')[0]) > 0:
-                shelly_state = 1
-            else:
-                shelly_state = 0
+try:
+    response = requests.get('http://' + shelly_ip + '/status')
+    if response.status_code == 200:
+        x = json.loads(response.text)
+        if float(str(str(x).split("[{'power': ")[1]).split(',')[0]) > 0:
+            shelly_state = 1
         else:
-            return None
-    except Exception:
-        return None
+            shelly_state = 0
+except Exception:
+    print('erro')
 
 with open("/home/" + username + "/Desktop/files/shelly.csv") as log:
     data = log.readlines()

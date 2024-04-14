@@ -13,7 +13,7 @@ How to setup:
 
 Dowload the folder "raspi_custom_streamdeck". Open the file called "screen.py".
 Change the usernam to your pi's username, save the file and close.
-Go to the folder "pc" and open the file "pc_receive", change the ip to your pi's ip. 
+Go to the folder "pc" and open the file "pc_receive", change the ip to your pi's ip or your pi's host name. 
 Go to the file explorer and find the chrome.exe file, drag it into the cmd propmt and copy the path. Paste the path onto the "pc_recive" file (you can use any browser by removing this part of the code: ".get(put your chrome.exe path here)", and it will use your main browser, wich can be changed in the settings).
 Download all the musics/songs you want as a mp3, and put them in a folder called "album_1", drag that folder into the "files" folder.
 
